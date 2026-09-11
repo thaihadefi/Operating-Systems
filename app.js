@@ -1427,7 +1427,6 @@ function renderSyllabus() {
     const filteredVideos = chapter.videos.filter(v => {
       const matchesSearch = query === '' ||
         v.title.toLowerCase().includes(query) ||
-        v.id.toLowerCase().includes(query) ||
         (v.chapterTitle || '').toLowerCase().includes(query) ||
         (v.chapterDesc || '').toLowerCase().includes(query);
       
