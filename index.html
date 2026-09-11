@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IT007 UIT</title>
-  <meta name="description" content="Hệ thống bài giảng môn Hệ Điều Hành (IT007) - Đại học Công nghệ Thông tin (UIT).">
+  <meta name="description" content="Video lecture system for the Operating Systems course (IT007) - University of Information Technology (UIT).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -15,14 +15,6 @@
   <!-- YouTube Authentic Top Navbar -->
   <header class="yt-navbar">
     <div class="yt-nav-left">
-      <button class="yt-icon-btn menu-btn" title="Menu" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-
       <div class="yt-logo-wrap" title="IT007 UIT">
         <div class="yt-logo-badge">
           <svg width="28" height="20" viewBox="0 0 24 24" fill="#ff0000">
@@ -37,15 +29,15 @@
     <div class="yt-nav-center">
       <div class="yt-search-container">
         <div class="yt-search-box">
-          <input 
-            type="text" 
-            id="syllabus-search" 
-            placeholder="Tìm kiếm bài giảng (ví dụ: 5.4, Mutex, Banker, FCFS...)"
+          <input
+            type="text"
+            id="syllabus-search"
+            placeholder="Search lectures (e.g. 5.4, Mutex, Banker, FCFS...)"
             spellcheck="false"
           >
-          <button id="btn-clear-search" class="yt-clear-btn hidden" title="Xóa tìm kiếm">&times;</button>
+          <button id="btn-clear-search" class="yt-clear-btn hidden" title="Clear search">&times;</button>
         </div>
-        <button class="yt-search-submit" title="Tìm kiếm">
+        <button class="yt-search-submit" title="Search">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -56,19 +48,19 @@
 
     <!-- Right Controls: Progress & Save Status -->
     <div class="yt-nav-right">
-      <div class="yt-save-indicator" title="Tự động lưu tiến độ vào trình duyệt">
+      <div class="yt-save-indicator" title="Progress is auto-saved in your browser">
         <span class="save-dot"></span>
-        <span class="save-text">Tự động lưu</span>
+        <span class="save-text">Auto-saved</span>
       </div>
 
-      <div class="yt-progress-pill" title="Tiến độ toàn khóa học">
-        <span id="progress-text" class="progress-pill-text">0 / 96 video (0%)</span>
+      <div class="yt-progress-pill" title="Course progress">
+        <span id="progress-text" class="progress-pill-text">0 / 96 videos (0%)</span>
         <div class="progress-pill-bar">
           <div id="progress-bar-fill" class="progress-pill-fill" style="width: 0%;"></div>
         </div>
       </div>
 
-      <button id="btn-reset-progress" class="yt-icon-btn" title="Đặt lại toàn bộ tiến độ">
+      <button id="btn-reset-progress" class="yt-icon-btn" title="Reset all progress">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
           <path d="M3 3v5h5"></path>
@@ -84,9 +76,9 @@
       <!-- 1. Video Player (Exact YouTube 16:9 Cinema Container) -->
       <div class="yt-player-wrapper">
         <div id="yt-player-container">
-          <iframe 
+          <iframe
             id="yt-player"
-            src="" 
+            src=""
             title="YouTube Video Player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
@@ -97,38 +89,38 @@
 
       <!-- 2. Video Title (Matching YouTube's Watch Title) -->
       <h1 id="current-video-title" class="yt-video-title">
-        Đang tải bài giảng...
+        Loading lecture...
       </h1>
 
       <!-- 3. Action Buttons Row (Matching YouTube) -->
       <div class="yt-owner-actions-row">
         <!-- Action Buttons (Authentic YouTube Pill Buttons) -->
         <div class="yt-action-buttons">
-          <button id="btn-prev" class="yt-pill-btn" title="Bài trước (Phím P)">
+          <button id="btn-prev" class="yt-pill-btn" title="Previous (P key)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="19 20 9 12 19 4 19 20"></polygon>
               <line x1="5" y1="19" x2="5" y2="5"></line>
             </svg>
-            <span>Bài trước</span>
+            <span>Previous</span>
           </button>
 
-          <button id="btn-next" class="yt-pill-btn yt-pill-btn-primary" title="Bài tiếp theo (Phím N)">
-            <span>Bài kế tiếp</span>
+          <button id="btn-next" class="yt-pill-btn yt-pill-btn-primary" title="Next (N key)">
+            <span>Next</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="5 4 15 12 5 20 5 4"></polygon>
               <line x1="19" y1="5" x2="19" y2="19"></line>
             </svg>
           </button>
 
-          <button id="btn-toggle-watched" class="yt-pill-btn" title="Đánh dấu đã hoàn thành hoặc chưa hoàn thành bài này">
+          <button id="btn-toggle-watched" class="yt-pill-btn" title="Mark this lecture as watched or unwatched">
             <svg id="icon-watched-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
               <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
-            <span id="text-watched-status">Đánh dấu đã học</span>
+            <span id="text-watched-status">Mark as watched</span>
           </button>
 
-          <button id="btn-copy-link" class="yt-pill-btn" title="Sao chép liên kết chia sẻ">
+          <button id="btn-copy-link" class="yt-pill-btn" title="Copy share link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="18" cy="5" r="3"></circle>
               <circle cx="6" cy="12" r="3"></circle>
@@ -136,20 +128,20 @@
               <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
             </svg>
-            <span>Chia sẻ</span>
+            <span>Share</span>
           </button>
 
-          <a id="btn-open-yt" href="#" target="_blank" rel="noopener noreferrer" class="yt-pill-btn" title="Mở trực tiếp trên YouTube">
+          <a id="btn-open-yt" href="#" target="_blank" rel="noopener noreferrer" class="yt-pill-btn" title="Open on YouTube">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
             <span>YouTube</span>
           </a>
 
-          <label class="yt-auto-next-toggle" title="Tự động phát bài tiếp theo khi xem xong video này">
+          <label class="yt-auto-next-toggle" title="Automatically play the next lecture when this one ends">
             <input type="checkbox" id="chk-auto-next" checked>
             <span class="yt-toggle-pill"></span>
-            <span class="yt-toggle-label">Tự chuyển</span>
+            <span class="yt-toggle-label">Auto-next</span>
           </label>
         </div>
       </div>
@@ -157,9 +149,9 @@
       <!-- 4. YouTube Description Box (Moodle Course Topic Summary) -->
       <div class="yt-description-box">
         <div class="yt-desc-header">
-          <span id="player-counter" class="yt-desc-counter">Bài 1 / 96</span>
+          <span id="player-counter" class="yt-desc-counter">Lecture 1 / 96</span>
           <span class="yt-desc-dot">&bull;</span>
-          <span id="player-chapter-badge" class="yt-desc-chapter">Chương 1</span>
+          <span id="player-chapter-badge" class="yt-desc-chapter">Chapter 1</span>
         </div>
         <p id="current-chapter-desc" class="yt-desc-text">
           Chương 1: Tổng quan về Hệ điều hành
@@ -168,13 +160,13 @@
 
       <!-- 5. Keyboard Shortcuts Helper -->
       <div class="yt-shortcuts-box">
-        <span class="shortcuts-title">Phím tắt bàn phím:</span>
+        <span class="shortcuts-title">Keyboard shortcuts:</span>
         <div class="shortcuts-keys">
-          <span><kbd>Space</kbd> Dừng/Phát</span>
-          <span><kbd>N</kbd> Bài kế</span>
-          <span><kbd>P</kbd> Bài trước</span>
-          <span><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Tua 5s</span>
-          <span><kbd>F</kbd> Toàn màn hình</span>
+          <span><kbd>Space</kbd> Play/Pause</span>
+          <span><kbd>N</kbd> Next</span>
+          <span><kbd>P</kbd> Previous</span>
+          <span><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Seek 5s</span>
+          <span><kbd>F</kbd> Fullscreen</span>
         </div>
       </div>
     </div>
@@ -186,22 +178,22 @@
         <div class="yt-playlist-header">
           <div class="yt-playlist-title-row">
             <div class="yt-playlist-title">
-              <h2>Danh Sách Bài Giảng</h2>
-              <span id="syllabus-count-badge" class="yt-count-badge">96 video</span>
+              <h2>Lecture List</h2>
+              <span id="syllabus-count-badge" class="yt-count-badge">96 videos</span>
             </div>
 
             <div class="yt-accordion-quick-actions">
-              <button id="btn-expand-all" class="yt-text-btn" title="Mở rộng tất cả">Mở tất cả</button>
+              <button id="btn-expand-all" class="yt-text-btn" title="Expand all">Expand all</button>
               <span class="yt-dot-divider">&bull;</span>
-              <button id="btn-collapse-all" class="yt-text-btn" title="Thu gọn tất cả">Thu gọn</button>
+              <button id="btn-collapse-all" class="yt-text-btn" title="Collapse all">Collapse</button>
             </div>
           </div>
 
           <!-- YouTube Filter Chips -->
           <div class="yt-filter-chips">
-            <button class="yt-chip active" data-filter="all">Tất cả (96)</button>
-            <button class="yt-chip" data-filter="unwatched" id="tab-unwatched">Chưa học</button>
-            <button class="yt-chip" data-filter="watched" id="tab-watched">Đã học</button>
+            <button class="yt-chip active" data-filter="all">All (96)</button>
+            <button class="yt-chip" data-filter="unwatched" id="tab-unwatched">Unwatched</button>
+            <button class="yt-chip" data-filter="watched" id="tab-watched">Watched</button>
           </div>
         </div>
 
@@ -219,7 +211,7 @@
   </footer>
 
   <!-- Toast Notification Popup -->
-  <div id="toast" class="toast" role="alert">Thông báo</div>
+  <div id="toast" class="toast" role="alert">Notification</div>
 
   <script src="app.js"></script>
 </body>

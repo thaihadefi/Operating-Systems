@@ -23,6 +23,7 @@ Operating Systems (IT007) is a responsive, web-based video lecture and syllabus 
 - **Interactive Chapter Accordion:** Expandable chapter accordion panels with lecture progress counters, completion mini-bars, and global expand/collapse controls (`app.js`, `style.css`).
 - **Instant Search Engine:** Real-time search across lecture numbers (e.g., `5.4`, `1.2`), video titles, chapter titles, and chapter concept descriptions (`Banker`, `Mutex`, `Semaphore`, `FCFS`, `Paging`) (`app.js`).
 - **Playlist Filter Chips:** Multi-mode playlist views allowing students to filter between All, Unwatched, and Watched lectures (`app.js`, `style.css`).
+- **Lecture & Chapter Duration Display:** Real per-video runtime badges (`MM:SS` / `HH:MM:SS`) and a total watch-time summary per chapter, sourced from actual YouTube video metadata (`app.js`).
 
 ### Progress Tracking & Client Persistence
 - **Client-Side LocalStorage Persistence:** Zero-login architecture persisting watched lectures (`it007_watched_ids`), timestamps, active video, and accordion state locally (`app.js`).

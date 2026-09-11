@@ -1,5 +1,5 @@
-// IT007 UIT - Logic He Thong Bai Giang Mon He Dieu Hanh
-// Chuan giao dien YouTube Watch & Playlist, tu dong luu LocalStorage (khong can dang nhap)
+// IT007 UIT - Video Lecture System Logic (Operating Systems course)
+// Authentic YouTube Watch & Playlist UI, auto-saves to LocalStorage (no login required)
 
 const CHAPTERS_DATA = [
   {
@@ -9,6 +9,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "wVYpkUmprVo",
+        "duration": 666,
         "title": "Video 1.1: Tổng quan về Hệ điều hành",
         "chapterId": 1,
         "chapterTitle": "Chương 1: Tổng quan về Hệ điều hành",
@@ -18,6 +19,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "z1ip2GQtiSQ",
+        "duration": 524,
         "title": "Video 1.2: Hoạt động bên trong máy tính (Phần 1)",
         "chapterId": 1,
         "chapterTitle": "Chương 1: Tổng quan về Hệ điều hành",
@@ -27,6 +29,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "tl_65IvAkNw",
+        "duration": 585,
         "title": "Video 1.2: Hoạt động bên trong máy tính (Phần 2)",
         "chapterId": 1,
         "chapterTitle": "Chương 1: Tổng quan về Hệ điều hành",
@@ -36,6 +39,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "rYHJptSiMVc",
+        "duration": 683,
         "title": "Video 1.3: Kiến trúc hệ thống máy tính",
         "chapterId": 1,
         "chapterTitle": "Chương 1: Tổng quan về Hệ điều hành",
@@ -45,6 +49,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "sBAOMLkAS4k",
+        "duration": 685,
         "title": "Video 1.4: Các thao tác trong hệ điều hành",
         "chapterId": 1,
         "chapterTitle": "Chương 1: Tổng quan về Hệ điều hành",
@@ -61,6 +66,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "undOc0cK3q8",
+        "duration": 709,
         "title": "Video 2.1: Các thành phần trong hệ điều hành (Phần 1)",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -70,6 +76,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Acxbkud6U5E",
+        "duration": 444,
         "title": "Video 2.1: Các thành phần trong hệ điều hành (Phần 2)",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -79,6 +86,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "oZfhp-fiNoE",
+        "duration": 609,
         "title": "Video 2.1: Các thành phần trong hệ điều hành (Phần 3)",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -88,6 +96,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "UkUUjlWDC7M",
+        "duration": 334,
         "title": "Video 2.2: Các dịch vụ mà hệ điều hành cung cấp",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -97,6 +106,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "7x0mJYpzkIw",
+        "duration": 557,
         "title": "Video 2.3: Lời gọi hệ thống",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -106,6 +116,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "zd_1aInR5Xc",
+        "duration": 210,
         "title": "Video 2.4: Các chương trình hệ thống",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -115,6 +126,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "jMTWwOy25n8",
+        "duration": 670,
         "title": "Video 2.5: Cấu trúc của hệ điều hành",
         "chapterId": 2,
         "chapterTitle": "Chương 2: Các thành phần trong Hệ điều hành",
@@ -131,6 +143,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "csHlTe68uyg",
+        "duration": 159,
         "title": "Video 3.1: Các khái niệm cơ bản (Phần 1)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -140,6 +153,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "bRnH-_EDq1Y",
+        "duration": 829,
         "title": "Video 3.1: Các khái niệm cơ bản (Phần 2)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -149,6 +163,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "CsolmtCbMS0",
+        "duration": 425,
         "title": "Video 3.1: Các khái niệm cơ bản (Phần 3)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -158,6 +173,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "7dFKz0buw-A",
+        "duration": 578,
         "title": "Video 3.2: Trạng thái của tiến trình",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -167,6 +183,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "cimxgJohQCs",
+        "duration": 145,
         "title": "Video 3.3: Process Control Block",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -176,6 +193,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "J2SDv8kKkq4",
+        "duration": 392,
         "title": "Video 3.4: Định thời tiến trình (Phần 1/3)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -185,6 +203,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "o08NRlOOqjA",
+        "duration": 263,
         "title": "Video 3.4: Định thời tiến trình (Phần 2/3)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -194,6 +213,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "h5E3M2jMvrQ",
+        "duration": 528,
         "title": "Video 3.4: Định thời tiến trình (Phần 3/3)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -203,6 +223,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "cRRDE28dG8s",
+        "duration": 122,
         "title": "Video 3.5.0: Giới thiệu Chương 3 - Phần 2",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -212,6 +233,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "sCdVdlWnCLM",
+        "duration": 504,
         "title": "Video 3.5.1: Tác vụ tạo tiến trình với hàm fork (Phần 1)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -221,6 +243,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "AHPe4tSNSTU",
+        "duration": 421,
         "title": "Video 3.5.1: Tác vụ tạo tiến trình với họ hàm exec (Phần 2)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -230,6 +253,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "MvYa4Ht6wnQ",
+        "duration": 543,
         "title": "Video 3.5.2: Các ví dụ tạo tiến trình (Phần 1)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -239,6 +263,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "hi3Dq9X2uCM",
+        "duration": 470,
         "title": "Video 3.5.2: Các ví dụ tạo tiến trình (Phần 2)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -248,6 +273,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "4dTWHQg8oS4",
+        "duration": 174,
         "title": "Video 3.5.3: Tác vụ kết thúc tiến trình",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -257,6 +283,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "r2qIHbGGd2c",
+        "duration": 589,
         "title": "Video 3.6: Giao tiếp liên tiến trình",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -266,6 +293,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "5oATX7IsumQ",
+        "duration": 639,
         "title": "Video 3.7: Tiểu trình (Phần 1)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -275,6 +303,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Zp7no0XI258",
+        "duration": 311,
         "title": "Video 3.7: Tiểu trình (Phần 2)",
         "chapterId": 3,
         "chapterTitle": "Chương 3: Quản lý tiến trình",
@@ -291,6 +320,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "22cpo5_S8mk",
+        "duration": 231,
         "title": "Video 4.1: Các khái niệm cơ bản về định thời (Phần 1)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -300,6 +330,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "YUZa8NcjYMI",
+        "duration": 576,
         "title": "Video 4.1: Các khái niệm cơ bản về định thời (Phần 2)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -309,6 +340,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "nmR5gnO9TuQ",
+        "duration": 397,
         "title": "Video 4.2: Các loại định thời",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -318,6 +350,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "iMFXiqbR_os",
+        "duration": 580,
         "title": "Video 4.3: Các tiêu chuẩn định thời",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -327,6 +360,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "_eLkh8WHSYE",
+        "duration": 390,
         "title": "Video 4.4.1: Các thành phần trong giải thuật định thời CPU",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -336,6 +370,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "1gSJMTW3fTI",
+        "duration": 828,
         "title": "Video 4.4.2: Giải thuật First-Comes-First-Served (Phần 1)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -345,6 +380,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "3frOFyea00Q",
+        "duration": 602,
         "title": "Video 4.4.2: Giải thuật First-Comes-First-Served (Phần 2)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -354,6 +390,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "KX-AQzpsB0o",
+        "duration": 726,
         "title": "Video 4.4.3: Giải thuật Shortest-Job-First (Phần 1)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -363,6 +400,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "ErueoAmt4VE",
+        "duration": 573,
         "title": "Video 4.4.3: Giải thuật Shortest-Job-First (Phần 2)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -372,6 +410,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "GPDW1lWdMT8",
+        "duration": 426,
         "title": "Video 4.4.3: Giải thuật Shortest-Job-First (Phần 3)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -381,6 +420,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Og_EnJXBgoc",
+        "duration": 544,
         "title": "Video 4.4.4: Giải thuật Priority Scheduling",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -390,6 +430,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "b9sI2aNUczs",
+        "duration": 791,
         "title": "Video 4.4.5: Giải thuật Round Robin (Phần 1)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -399,6 +440,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "hJTHaQ_IZ0I",
+        "duration": 466,
         "title": "Video 4.4.5: Giải thuật Round Robin (Phần 2)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -408,6 +450,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "JvxIpoG9Oto",
+        "duration": 235,
         "title": "Video 4.4.6: Giải thuật Highest-Response-Ratio-Next",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -417,6 +460,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "08Eq8IYklDg",
+        "duration": 331,
         "title": "Video 4.4.7 - 4.4.8: Giải thuật Multilevel (Feedback) Queue (Phần 1)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -426,6 +470,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "CfUxBmdzgaY",
+        "duration": 206,
         "title": "Video 4.4.7 - 4.4.8: Giải thuật Multilevel (Feedback) Queue (Phần 2)",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -435,6 +480,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "da9155FcuuU",
+        "duration": 176,
         "title": "Video 4.4.9: So sánh các giải thuật",
         "chapterId": 4,
         "chapterTitle": "Chương 4: Định thời CPU",
@@ -451,6 +497,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "dur3ZmCwtYc",
+        "duration": 340,
         "title": "Video 5.1: Race Condition (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -460,6 +507,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "2QHiU6PZ1YQ",
+        "duration": 561,
         "title": "Video 5.1: Race Condition (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -469,6 +517,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "1E0AW7TR9C4",
+        "duration": 377,
         "title": "Video 5.1: Race Condition (Phần 3)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -478,6 +527,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "B8ryLLEJ6ec",
+        "duration": 343,
         "title": "Video 5.1: Race Condition (Phần 4)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -487,6 +537,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "aQehm8bz_b4",
+        "duration": 538,
         "title": "Video 5.2 - 5.3: Vấn đề vùng tranh chấp",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -496,6 +547,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "YoPmWjz-3pI",
+        "duration": 612,
         "title": "Video 5.4: Các giải pháp dựa trên ngắt (giải pháp phần mềm) (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -505,6 +557,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "QuboMWOPCBU",
+        "duration": 466,
         "title": "Video 5.4: Các giải pháp dựa trên ngắt (giải pháp phần mềm) (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -514,6 +567,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "PpL-bv0nUUU",
+        "duration": 481,
         "title": "Video 5.4: Các giải pháp dựa trên ngắt (giải pháp phần mềm) (Phần 3)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -523,6 +577,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "7JVztV5kJbs",
+        "duration": 302,
         "title": "Video 5.5: Các giải pháp phần cứng",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -532,6 +587,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "6U5dfwuqK7A",
+        "duration": 316,
         "title": "Video 5.6: Mutex Locks (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -541,6 +597,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "sFDyTL_Umh0",
+        "duration": 592,
         "title": "Video 5.6: Mutex Locks (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -550,6 +607,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "N5QMXmCTvNA",
+        "duration": 480,
         "title": "Video 5.7.1 - 5.7.2: Semaphores (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -559,6 +617,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "nI8BIikbCNE",
+        "duration": 640,
         "title": "Video 5.7.1 - 5.7.2: Semaphores (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -568,6 +627,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "wg9zBo8jiik",
+        "duration": 771,
         "title": "Video 5.7.3 - 5.7.4: Ứng dụng của semaphores (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -577,6 +637,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "F2p4lnG5EeM",
+        "duration": 504,
         "title": "Video 5.7.3 - 5.7.4: Ứng dụng của semaphores (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -586,6 +647,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "h4i9_TjJyYI",
+        "duration": 497,
         "title": "Video 5.8: Monitors",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -595,6 +657,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "fb1x4Xh8uPQ",
+        "duration": 309,
         "title": "Video 5.A: Liveness",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -604,6 +667,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "MtgJyNmgycI",
+        "duration": 205,
         "title": "Video 5.9: Bài toán Bounded Buffer (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -613,6 +677,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Yz4m4E2a5YU",
+        "duration": 716,
         "title": "Video 5.9: Bài toán Bounded Buffer (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -622,6 +687,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "QZCLorO5HAQ",
+        "duration": 450,
         "title": "Video 5.9: Bài toán Bounded Buffer (Phần 3)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -631,6 +697,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "EbH7F0RpMK8",
+        "duration": 561,
         "title": "Video 5.10: Bài toán Readers - Writers (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -640,6 +707,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "5kk_pA8esQA",
+        "duration": 622,
         "title": "Video 5.10: Bài toán Readers - Writers (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -649,6 +717,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "dS8xwmgW4z0",
+        "duration": 670,
         "title": "Video 5.11: Bài toán Dining Philosophers (Phần 1)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -658,6 +727,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "dJmjQUmBBSg",
+        "duration": 83,
         "title": "Video 5.11: Bài toán Dining Philosophers (Phần 2)",
         "chapterId": 5,
         "chapterTitle": "Chương 5: Đồng bộ tiến trình",
@@ -674,6 +744,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "w0sGve9dvB0",
+        "duration": 705,
         "title": "Video 6.1: Vấn đề deadlock",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -683,6 +754,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Q58abzVx6Ow",
+        "duration": 825,
         "title": "Video 6.2: Mô hình hóa hệ thống",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -692,6 +764,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Jw35RP_dibE",
+        "duration": 504,
         "title": "Video 6.3: Ngăn deadlock",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -701,6 +774,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "5V8pBxnYs6U",
+        "duration": 598,
         "title": "Video 6.4: Tránh deadlock",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -710,6 +784,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "NZI1rUhQqJ0",
+        "duration": 750,
         "title": "Video 6.5: Tránh deadlock - Giải thuật Banker",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -719,6 +794,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "aOgMrJjm03o",
+        "duration": 470,
         "title": "Video 6.6: Tránh deadlock - Giải thuật yêu cầu tài nguyên",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -728,6 +804,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "x8hd-VVFjoY",
+        "duration": 879,
         "title": "Video 6.7: Phát hiện deadlock",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -737,6 +814,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "9c8O8qbxMEo",
+        "duration": 391,
         "title": "Video 6.8: Phục hồi deadlock",
         "chapterId": 6,
         "chapterTitle": "Chương 6: Deadlock",
@@ -753,6 +831,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "mgDi_fJmn_M",
+        "duration": 835,
         "title": "Video 7.1: Khái niệm cơ sở về bộ nhớ",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -762,6 +841,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "HmfI1wZALF4",
+        "duration": 843,
         "title": "Video 7.2: Các kiểu địa chỉ nhớ",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -771,6 +851,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "ULu_d8bZ9Qg",
+        "duration": 698,
         "title": "Video 7.3: Chuyển đổi địa chỉ nhớ",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -780,6 +861,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "LbqaI6frsSU",
+        "duration": 803,
         "title": "Video 7.4: Mô hình quản lý bộ nhớ",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -789,6 +871,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "yBKhWnxVDys",
+        "duration": 654,
         "title": "Video 7.5.1: Cơ chế phân trang phần 1",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -798,6 +881,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "G4-mIRqHx6I",
+        "duration": 899,
         "title": "Video 7.5.2: Cơ chế phân trang phần 2",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -807,6 +891,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "HQJ01hxF8TM",
+        "duration": 187,
         "title": "Video 7.6: Cơ chế hoán vị (swapping)",
         "chapterId": 7,
         "chapterTitle": "Chương 7: Quản lý bộ nhớ",
@@ -823,6 +908,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "HJYFjHkt98M",
+        "duration": 741,
         "title": "Video 8.1: Tổng quan về bộ nhớ ảo",
         "chapterId": 8,
         "chapterTitle": "Chương 8: Bộ nhớ ảo",
@@ -832,6 +918,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "eZIPJ16_jds",
+        "duration": 823,
         "title": "Video 8.2: Cài đặt bộ nhớ ảo - Demand Paging",
         "chapterId": 8,
         "chapterTitle": "Chương 8: Bộ nhớ ảo",
@@ -841,6 +928,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "uuaGjgH3Wxo",
+        "duration": 899,
         "title": "Video 8.3: Các giải thuật thay trang",
         "chapterId": 8,
         "chapterTitle": "Chương 8: Bộ nhớ ảo",
@@ -850,6 +938,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "g7t-JNov5iI",
+        "duration": 387,
         "title": "Video 8.4: Vấn đề cấp phát Frames",
         "chapterId": 8,
         "chapterTitle": "Chương 8: Bộ nhớ ảo",
@@ -859,6 +948,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "p5QrtdW4gOA",
+        "duration": 580,
         "title": "Video 8.5: Vấn đề Thrashing",
         "chapterId": 8,
         "chapterTitle": "Chương 8: Bộ nhớ ảo",
@@ -875,6 +965,7 @@ const CHAPTERS_DATA = [
     "videos": [
       {
         "id": "zwsbvlqR5WE",
+        "duration": 300,
         "title": "Video 9.1: Giới thiệu Chương 9",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -884,6 +975,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Tu1k8K1THnE",
+        "duration": 630,
         "title": "Video 9.2: Tổng quan về Hệ điều hành Linux",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -893,6 +985,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "ixO5EZy69Y0",
+        "duration": 430,
         "title": "Video 9.3: Các thành phần của Hệ điều hành Linux",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -902,6 +995,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "4cpSKayyVQs",
+        "duration": 502,
         "title": "Video 9.4: Quản lý tiến trình và Bộ nhớ trong Hệ điều hành Linux",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -911,6 +1005,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "fTvUxy0mYfY",
+        "duration": 351,
         "title": "Video 9.5: Tổng quan về Hệ điều hành Windows",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -920,6 +1015,7 @@ const CHAPTERS_DATA = [
       },
       {
         "id": "Ikc_w6qJ1s4",
+        "duration": 687,
         "title": "Video 9.6: Các thành phần của Hệ điều hành Windows",
         "chapterId": 9,
         "chapterTitle": "Chương 9: Các hệ điều hành hiện đại",
@@ -943,7 +1039,7 @@ CHAPTERS_DATA.forEach(ch => {
   });
 });
 
-// Khoi tao State tu LocalStorage
+// Initialize State from LocalStorage
 const savedExpanded = JSON.parse(localStorage.getItem('it007_expanded_chapters') || 'null');
 const STATE = {
   activeVideoId: localStorage.getItem('it007_active_id') || (FLAT_VIDEOS[0] ? FLAT_VIDEOS[0].id : null),
@@ -986,7 +1082,7 @@ const elTabWatched = document.getElementById('tab-watched');
 const elToast = document.getElementById('toast');
 
 /**
- * Hien thi Toast thong bao (khong emoji)
+ * Show a toast notification (no emoji)
  */
 let toastTimeout = null;
 function showToast(message) {
@@ -1000,14 +1096,14 @@ function showToast(message) {
 }
 
 /**
- * Luu danh sach chuong da mo vao LocalStorage
+ * Save the list of expanded chapters to LocalStorage
  */
 function saveExpandedChapters() {
   localStorage.setItem('it007_expanded_chapters', JSON.stringify(Array.from(STATE.expandedChapters)));
 }
 
 /**
- * Cap nhat thanh tien do tong the va cac tab
+ * Update the overall progress bar and filter tabs
  */
 function updateOverallProgress() {
   const total = FLAT_VIDEOS.length;
@@ -1016,17 +1112,17 @@ function updateOverallProgress() {
   const percentage = total > 0 ? Math.round((watchedCount / total) * 100) : 0;
 
   if (elProgressText) {
-    elProgressText.textContent = `${watchedCount} / ${total} video (${percentage}%)`;
+    elProgressText.textContent = `${watchedCount} / ${total} videos (${percentage}%)`;
   }
   if (elProgressBarFill) {
     elProgressBarFill.style.width = `${percentage}%`;
   }
 
   if (elTabUnwatched) {
-    elTabUnwatched.textContent = `Chưa học (${unwatchedCount})`;
+    elTabUnwatched.textContent = `Unwatched (${unwatchedCount})`;
   }
   if (elTabWatched) {
-    elTabWatched.textContent = `Đã học (${watchedCount})`;
+    elTabWatched.textContent = `Watched (${watchedCount})`;
   }
 
   CHAPTERS_DATA.forEach(ch => {
@@ -1047,25 +1143,53 @@ function updateOverallProgress() {
 }
 
 /**
- * Tim video theo ID
+ * Find a video by ID
  */
 function findVideoById(id) {
   return FLAT_VIDEOS.find(v => v.id === id) || null;
 }
 
 /**
- * Lay index toan cuc cua video (0 den 95)
+ * Get the global index of a video (0 to 95)
  */
 function getVideoGlobalIndex(id) {
   return FLAT_VIDEOS.findIndex(v => v.id === id);
 }
 
 /**
- * Luu thoi gian xem video hien tai vao LocalStorage
+ * Format seconds as a video duration (M:SS or H:MM:SS)
+ */
+function formatDuration(totalSeconds) {
+  const s = Math.max(0, Math.floor(totalSeconds || 0));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  if (h > 0) {
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  }
+  return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
+
+/**
+ * Format seconds as a chapter total duration (e.g. "3h 24m")
+ */
+function formatChapterDuration(totalSeconds) {
+  const totalMinutes = Math.round((totalSeconds || 0) / 60);
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
+/**
+ * Save the current playback time to LocalStorage
  */
 function saveCurrentPlaybackTime() {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function' && STATE.activeVideoId) {
     try {
+      // Don't save an ended video's position as a resume point
+      if (typeof STATE.ytPlayer.getPlayerState === 'function' && STATE.ytPlayer.getPlayerState() === 0) {
+        return;
+      }
       const time = Math.floor(STATE.ytPlayer.getCurrentTime());
       if (time > 2) {
         localStorage.setItem(`it007_time_${STATE.activeVideoId}`, time.toString());
@@ -1077,7 +1201,7 @@ function saveCurrentPlaybackTime() {
 }
 
 /**
- * Chon video de phat
+ * Select a video to play
  */
 function selectVideo(videoId, userTriggered = false) {
   const video = findVideoById(videoId);
@@ -1093,21 +1217,26 @@ function selectVideo(videoId, userTriggered = false) {
 
   updatePlayerUI(video);
 
-  const savedTime = parseInt(localStorage.getItem(`it007_time_${video.id}`) || '0', 10);
+  // Watched lectures always restart from 0, ignoring any old saved position
+  const savedTime = STATE.watchedIds.has(video.id)
+    ? 0
+    : parseInt(localStorage.getItem(`it007_time_${video.id}`) || '0', 10);
   loadVideoIntoPlayer(video.id, savedTime);
 
   updateActiveRowInDOM(video.id, video.chapterId);
 
-  setTimeout(() => {
-    const activeRow = document.querySelector(`.video-row[data-video-id="${video.id}"]`);
-    if (activeRow) {
-      activeRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }, 120);
+  if (userTriggered) {
+    setTimeout(() => {
+      const activeRow = document.querySelector(`.video-row[data-video-id="${video.id}"]`);
+      if (activeRow) {
+        activeRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 120);
+  }
 }
 
 /**
- * Nap video vao YouTube Player
+ * Load a video into the YouTube Player
  */
 function loadVideoIntoPlayer(videoId, startSeconds = 0) {
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&fs=1${startSeconds > 0 ? `&start=${startSeconds}` : ''}`;
@@ -1130,15 +1259,15 @@ function loadVideoIntoPlayer(videoId, startSeconds = 0) {
 }
 
 /**
- * Cap nhat thong tin tren thanh dieu khien cua Player
+ * Update the info shown on the player controls bar
  */
 function updatePlayerUI(video) {
   const globalIdx = getVideoGlobalIndex(video.id);
   const total = FLAT_VIDEOS.length;
 
   if (elVideoTitle) elVideoTitle.textContent = video.title;
-  if (elChapterBadge) elChapterBadge.textContent = `Chương ${video.chapterId}`;
-  if (elVideoCounter) elVideoCounter.textContent = `Bài ${globalIdx + 1} / ${total}`;
+  if (elChapterBadge) elChapterBadge.textContent = `Chapter ${video.chapterId}`;
+  if (elVideoCounter) elVideoCounter.textContent = `Lecture ${globalIdx + 1} / ${total}`;
   if (elChapterDesc) elChapterDesc.textContent = `${video.chapterTitle} - ${video.chapterDesc}`;
 
   if (elBtnPrev) elBtnPrev.disabled = (globalIdx <= 0);
@@ -1152,14 +1281,14 @@ function updatePlayerUI(video) {
 }
 
 /**
- * Cap nhat trang thai hien thi cua nut Da hoc / Chua hoc
+ * Update the Watched / Not Watched button's visual state
  */
 function updateWatchedButtonState(isWatched) {
   if (!elBtnToggleWatched || !elTextWatchedStatus) return;
 
   if (isWatched) {
     elBtnToggleWatched.classList.add('btn-watched-active');
-    elTextWatchedStatus.textContent = 'Đã hoàn thành';
+    elTextWatchedStatus.textContent = 'Watched';
     if (elIconWatchedCheck) {
       elIconWatchedCheck.innerHTML = `
         <polyline points="20 6 9 17 4 12"></polyline>
@@ -1167,7 +1296,7 @@ function updateWatchedButtonState(isWatched) {
     }
   } else {
     elBtnToggleWatched.classList.remove('btn-watched-active');
-    elTextWatchedStatus.textContent = 'Đánh dấu đã học';
+    elTextWatchedStatus.textContent = 'Mark as watched';
     if (elIconWatchedCheck) {
       elIconWatchedCheck.innerHTML = `
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -1178,7 +1307,7 @@ function updateWatchedButtonState(isWatched) {
 }
 
 /**
- * Bat/tat trang thai da hoc cho video hien tai
+ * Toggle watched state for the current video
  */
 function toggleCurrentWatched() {
   if (!STATE.activeVideoId) return;
@@ -1186,17 +1315,17 @@ function toggleCurrentWatched() {
 }
 
 /**
- * Bat/tat trang thai da hoc cho 1 video bat ky
+ * Toggle watched state for any given video
  */
 function toggleVideoWatched(id) {
   const isCurrentlyWatched = STATE.watchedIds.has(id);
 
   if (isCurrentlyWatched) {
     STATE.watchedIds.delete(id);
-    showToast('Đã chuyển bài học sang trạng thái chưa hoàn thành');
+    showToast('Marked as unwatched');
   } else {
     STATE.watchedIds.add(id);
-    showToast('Đã đánh dấu hoàn thành bài học');
+    showToast('Marked as watched');
   }
 
   localStorage.setItem('it007_watched_ids', JSON.stringify(Array.from(STATE.watchedIds)));
@@ -1229,7 +1358,7 @@ function toggleVideoWatched(id) {
 }
 
 /**
- * Cap nhat highlight row dang phat trong DOM ma khong render lai toan bo
+ * Update the "now playing" row without a full re-render
  */
 function updateActiveRowInDOM(activeId, chapterId) {
   document.querySelectorAll('.video-row.current-playing').forEach(el => {
@@ -1255,14 +1384,14 @@ function updateActiveRowInDOM(activeId, chapterId) {
     if (metaExtra && !metaExtra.querySelector('.playing-badge')) {
       const badge = document.createElement('span');
       badge.className = 'playing-badge';
-      badge.textContent = 'Đang phát';
+      badge.textContent = 'Playing';
       metaExtra.appendChild(badge);
     }
   }
 }
 
 /**
- * Chuyen sang bai truoc do
+ * Switch to the previous lecture
  */
 function playPrevVideo() {
   const currentIdx = getVideoGlobalIndex(STATE.activeVideoId);
@@ -1272,19 +1401,19 @@ function playPrevVideo() {
 }
 
 /**
- * Chuyen sang bai tiep theo
+ * Switch to the next lecture
  */
 function playNextVideo() {
   const currentIdx = getVideoGlobalIndex(STATE.activeVideoId);
   if (currentIdx < FLAT_VIDEOS.length - 1) {
     selectVideo(FLAT_VIDEOS[currentIdx + 1].id, true);
   } else {
-    showToast('Bạn đã đến bài giảng cuối cùng của khóa học');
+    showToast("You've reached the last lecture of the course");
   }
 }
 
 /**
- * Render toan bo danh sach noi dung mon hoc (Syllabus theo 9 Chuong kieu YouTube)
+ * Render the full syllabus list (9 chapters, YouTube-style accordion)
  */
 function renderSyllabus() {
   if (!elChaptersAccordion) return;
@@ -1319,6 +1448,7 @@ function renderSyllabus() {
     const chWatched = chapter.videos.filter(v => STATE.watchedIds.has(v.id)).length;
     const chTotal = chapter.videos.length;
     const chPercent = chTotal > 0 ? Math.round((chWatched / chTotal) * 100) : 0;
+    const chDuration = chapter.videos.reduce((sum, v) => sum + (v.duration || 0), 0);
     const isExpanded = query !== '' || STATE.expandedChapters.has(chapter.id);
     const hasActiveVideo = chapter.videos.some(v => v.id === STATE.activeVideoId);
 
@@ -1334,7 +1464,7 @@ function renderSyllabus() {
             <div class="chapter-mini-bar">
               <div id="ch-bar-${chapter.id}" class="chapter-mini-bar-fill" style="width: ${chPercent}%;"></div>
             </div>
-            <span class="chapter-desc-text">${chWatched}/${chTotal} hoàn thành</span>
+            <span class="chapter-desc-text">${chWatched}/${chTotal} completed &bull; ${formatChapterDuration(chDuration)}</span>
           </div>
         </div>
         <div class="chapter-header-right">
@@ -1349,13 +1479,13 @@ function renderSyllabus() {
       <div class="video-list">
         ${
           filteredVideos.length === 0 
-            ? '<div class="empty-search-state">Không có bài giảng nào phù hợp</div>'
+            ? '<div class="empty-search-state">No matching lectures</div>'
             : filteredVideos.map((v) => {
                 const isCurrent = v.id === STATE.activeVideoId;
                 const isWatched = STATE.watchedIds.has(v.id);
                 return `
                   <div class="video-row ${isCurrent ? 'current-playing' : ''} ${isWatched ? 'is-watched' : ''}" data-video-id="${v.id}">
-                    <button class="check-watched-btn" data-action="toggle-watched-btn" data-video-id="${v.id}" title="${isWatched ? 'Đã học xong (bấm để đổi)' : 'Chưa học (bấm để đánh dấu đã học)'}">
+                    <button class="check-watched-btn" data-action="toggle-watched-btn" data-video-id="${v.id}" title="${isWatched ? 'Watched (click to change)' : 'Not watched (click to mark as watched)'}">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         ${isWatched 
                           ? '<circle cx="12" cy="12" r="10" fill="rgba(16,185,129,0.15)"></circle><polyline points="16 9 10 15 7 12"></polyline>' 
@@ -1363,13 +1493,15 @@ function renderSyllabus() {
                         }
                       </svg>
                     </button>
-                    <div class="video-thumb-container" style="background-image: url('https://img.youtube.com/vi/${v.id}/mqdefault.jpg');"></div>
+                    <div class="video-thumb-container" style="background-image: url('https://img.youtube.com/vi/${v.id}/mqdefault.jpg');">
+                      <span class="video-time-badge">${formatDuration(v.duration)}</span>
+                    </div>
                     <div class="video-meta-col">
                       <span class="video-meta-title" title="${v.title}">${v.title}</span>
                       <span class="video-meta-channel">${v.channel || 'YouTube'}</span>
                       <div class="video-meta-extra">
-                        <span>Chương ${v.chapterId}</span>
-                        ${isCurrent ? '<span class="playing-badge">Đang phát</span>' : ''}
+                        <span>Chapter ${v.chapterId}</span>
+                        ${isCurrent ? '<span class="playing-badge">Playing</span>' : ''}
                       </div>
                     </div>
                   </div>
@@ -1411,18 +1543,18 @@ function renderSyllabus() {
   if (totalVisibleVideos === 0) {
     elChaptersAccordion.innerHTML = `
       <div class="empty-search-state">
-        <p>Không tìm thấy bài giảng nào khớp với từ khóa <b>"${query}"</b></p>
+        <p>No lectures found matching <b>"${query}"</b></p>
       </div>
     `;
   }
 
   if (elSyllabusCountBadge) {
-    elSyllabusCountBadge.textContent = `${totalVisibleVideos} / ${FLAT_VIDEOS.length} video`;
+    elSyllabusCountBadge.textContent = `${totalVisibleVideos} / ${FLAT_VIDEOS.length} videos`;
   }
 }
 
 /**
- * Thiet lap cac su kien tuong tac
+ * Set up all interaction event listeners
  */
 function setupEventListeners() {
   if (elBtnPrev) elBtnPrev.addEventListener('click', playPrevVideo);
@@ -1443,7 +1575,7 @@ function setupEventListeners() {
       const video = findVideoById(STATE.activeVideoId);
       if (!video) return;
 
-      // Kem theo moc thoi gian dang xem (?t=) neu lay duoc tu player
+      // Include current playback position (?t=) if available
       let startAt = 0;
       if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function') {
         try {
@@ -1530,7 +1662,7 @@ function setupEventListeners() {
   setInterval(saveCurrentPlaybackTime, 2000);
   window.addEventListener('beforeunload', saveCurrentPlaybackTime);
 
-  // Tu dong tra lai focus cho window khi re chuot ra ngoai khung video
+  // Return focus to window when the mouse leaves the video frame
   const playerWrapper = document.querySelector('.yt-player-wrapper');
   if (playerWrapper) {
     playerWrapper.addEventListener('mouseleave', () => {
@@ -1547,9 +1679,9 @@ function setupEventListeners() {
     }
   });
 
-  // Xu ly toan bo phim tat ban phim (Space, N, P, Mui ten trai/phai, F)
+  // Handle all keyboard shortcuts (Space, N, P, Left/Right arrows, F)
   window.addEventListener('keydown', (e) => {
-    // Khong kich hoat phim tat neu nguoi dung dang go trong input tim kiem
+    // Don't trigger shortcuts while typing in the search input
     if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable)) {
       return;
     }
@@ -1577,7 +1709,7 @@ function setupEventListeners() {
 }
 
 /**
- * Gui lenh postMessage truc tiep vao iframe YouTube
+ * Send a postMessage command directly to the YouTube iframe
  */
 function postMessageToPlayer(func, args = []) {
   const iframe = document.getElementById('yt-player');
@@ -1591,7 +1723,7 @@ function postMessageToPlayer(func, args = []) {
 }
 
 /**
- * Bat / Tam dung video (Phim Space)
+ * Play / Pause video (Space key)
  */
 function togglePlayPause() {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getPlayerState === 'function') {
@@ -1609,11 +1741,11 @@ function togglePlayPause() {
         return;
       }
     } catch (err) {
-      console.warn('Loi goi truc tiep ytPlayer API:', err);
+      console.warn('ytPlayer API call failed:', err);
     }
   }
 
-  // Fallback dung postMessage
+  // Fallback via postMessage
   if (STATE.isPlaying) {
     postMessageToPlayer('pauseVideo');
     STATE.isPlaying = false;
@@ -1626,7 +1758,7 @@ function togglePlayPause() {
 }
 
 /**
- * Tua video theo so giay (Mui ten trai -5s, Mui ten phai +5s)
+ * Seek by N seconds (Left arrow -5s, Right arrow +5s)
  */
 function seekRelative(seconds) {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function') {
@@ -1638,11 +1770,11 @@ function seekRelative(seconds) {
       showToast(seconds > 0 ? `Tua tới +${seconds}s` : `Tua lùi ${seconds}s`);
       return;
     } catch (err) {
-      console.warn('Loi seek ytPlayer:', err);
+      console.warn('ytPlayer seek failed:', err);
     }
   }
 
-  // Fallback voi thoi gian uoc tinh
+  // Fallback with an estimated time
   const targetTime = Math.max(0, (STATE.lastKnownTime || 0) + seconds);
   STATE.lastKnownTime = targetTime;
   postMessageToPlayer('seekTo', [targetTime, true]);
@@ -1650,7 +1782,7 @@ function seekRelative(seconds) {
 }
 
 /**
- * Bat / Tat che do toan man hinh (Phim F)
+ * Toggle fullscreen mode (F key)
  */
 function toggleFullScreen() {
   const iframe = document.getElementById('yt-player');
@@ -1665,7 +1797,7 @@ function toggleFullScreen() {
 }
 
 /**
- * Tich hop YouTube IFrame Player API
+ * Load the YouTube IFrame Player API
  */
 function initYouTubeApi() {
   const tag = document.createElement('script');
@@ -1684,19 +1816,22 @@ function initYouTubeApi() {
 }
 
 /**
- * Xu ly khi trang thai video thay doi
+ * Handle player state changes
  */
 function onPlayerStateChange(event) {
   if (event.data === 1) {
-    // Dang phat
+    // Playing
     STATE.isPlaying = true;
   } else if (event.data === 2) {
-    // Tam dung
+    // Paused
     STATE.isPlaying = false;
   } else if (event.data === 0) {
-    // Ket thuc video
+    // Ended
     STATE.isPlaying = false;
     if (STATE.activeVideoId) {
+      // Clear the resume point now that the video has ended
+      localStorage.removeItem(`it007_time_${STATE.activeVideoId}`);
+
       if (!STATE.watchedIds.has(STATE.activeVideoId)) {
         STATE.watchedIds.add(STATE.activeVideoId);
         localStorage.setItem('it007_watched_ids', JSON.stringify(Array.from(STATE.watchedIds)));
@@ -1716,7 +1851,7 @@ function onPlayerStateChange(event) {
 }
 
 /**
- * Khoi dong ung dung khi trang web tai xong
+ * Boot the app once the page has loaded
  */
 function init() {
   initYouTubeApi();
