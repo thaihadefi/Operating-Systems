@@ -1,5 +1,3 @@
-// IT007 UIT - Video Lecture System Logic (Operating Systems course)
-// Authentic YouTube Watch & Playlist UI, auto-saves to LocalStorage (no login required)
 
 const CHAPTERS_DATA = [
   {
@@ -1039,13 +1037,12 @@ CHAPTERS_DATA.forEach(ch => {
   });
 });
 
-// Initialize State from LocalStorage
 const savedExpanded = JSON.parse(localStorage.getItem('it007_expanded_chapters') || 'null');
 const STATE = {
   activeVideoId: localStorage.getItem('it007_active_id') || (FLAT_VIDEOS[0] ? FLAT_VIDEOS[0].id : null),
   watchedIds: new Set(JSON.parse(localStorage.getItem('it007_watched_ids') || '[]')),
   autoNext: localStorage.getItem('it007_auto_next') !== 'false',
-  filterMode: 'all', // 'all' | 'unwatched' | 'watched'
+  filterMode: 'all',
   searchQuery: '',
   expandedChapters: new Set(savedExpanded || [1]),
   ytPlayer: null,
@@ -1054,7 +1051,6 @@ const STATE = {
   lastKnownTime: 0
 };
 
-// DOM Elements
 const elVideoTitle = document.getElementById('current-video-title');
 const elChapterBadge = document.getElementById('player-chapter-badge');
 const elVideoCounter = document.getElementById('player-counter');
@@ -1081,9 +1077,6 @@ const elTabUnwatched = document.getElementById('tab-unwatched');
 const elTabWatched = document.getElementById('tab-watched');
 const elToast = document.getElementById('toast');
 
-/**
- * Show a toast notification (no emoji)
- */
 let toastTimeout = null;
 function showToast(message) {
   if (!elToast) return;
@@ -1095,16 +1088,10 @@ function showToast(message) {
   }, 2200);
 }
 
-/**
- * Save the list of expanded chapters to LocalStorage
- */
 function saveExpandedChapters() {
   localStorage.setItem('it007_expanded_chapters', JSON.stringify(Array.from(STATE.expandedChapters)));
 }
 
-/**
- * Update the overall progress bar and filter tabs
- */
 function updateOverallProgress() {
   const total = FLAT_VIDEOS.length;
   const watchedCount = FLAT_VIDEOS.filter(v => STATE.watchedIds.has(v.id)).length;
@@ -1142,23 +1129,14 @@ function updateOverallProgress() {
   });
 }
 
-/**
- * Find a video by ID
- */
 function findVideoById(id) {
   return FLAT_VIDEOS.find(v => v.id === id) || null;
 }
 
-/**
- * Get the global index of a video (0 to 95)
- */
 function getVideoGlobalIndex(id) {
   return FLAT_VIDEOS.findIndex(v => v.id === id);
 }
 
-/**
- * Format seconds as a video duration (M:SS or H:MM:SS)
- */
 function formatDuration(totalSeconds) {
   const s = Math.max(0, Math.floor(totalSeconds || 0));
   const h = Math.floor(s / 3600);
@@ -1170,9 +1148,6 @@ function formatDuration(totalSeconds) {
   return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
 }
 
-/**
- * Format seconds as a chapter total duration (e.g. "3h 24m")
- */
 function formatChapterDuration(totalSeconds) {
   const totalMinutes = Math.round((totalSeconds || 0) / 60);
   const h = Math.floor(totalMinutes / 60);
@@ -1180,13 +1155,9 @@ function formatChapterDuration(totalSeconds) {
   return h > 0 ? `${h}h ${m}m` : `${m}m`;
 }
 
-/**
- * Save the current playback time to LocalStorage
- */
 function saveCurrentPlaybackTime() {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function' && STATE.activeVideoId) {
     try {
-      // Don't save an ended video's position as a resume point
       if (typeof STATE.ytPlayer.getPlayerState === 'function' && STATE.ytPlayer.getPlayerState() === 0) {
         return;
       }
@@ -1195,14 +1166,10 @@ function saveCurrentPlaybackTime() {
         localStorage.setItem(`it007_time_${STATE.activeVideoId}`, time.toString());
       }
     } catch (e) {
-      // Ignore
     }
   }
 }
 
-/**
- * Select a video to play
- */
 function selectVideo(videoId, userTriggered = false) {
   const video = findVideoById(videoId);
   if (!video) return;
@@ -1217,7 +1184,6 @@ function selectVideo(videoId, userTriggered = false) {
 
   updatePlayerUI(video);
 
-  // Watched lectures always restart from 0, ignoring any old saved position
   const savedTime = STATE.watchedIds.has(video.id)
     ? 0
     : parseInt(localStorage.getItem(`it007_time_${video.id}`) || '0', 10);
@@ -1235,9 +1201,6 @@ function selectVideo(videoId, userTriggered = false) {
   }
 }
 
-/**
- * Load a video into the YouTube Player
- */
 function loadVideoIntoPlayer(videoId, startSeconds = 0) {
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1&fs=1${startSeconds > 0 ? `&start=${startSeconds}` : ''}`;
   
@@ -1249,7 +1212,6 @@ function loadVideoIntoPlayer(videoId, startSeconds = 0) {
       });
       return;
     } catch (err) {
-      // Fallback
     }
   }
 
@@ -1258,9 +1220,6 @@ function loadVideoIntoPlayer(videoId, startSeconds = 0) {
   }
 }
 
-/**
- * Update the info shown on the player controls bar
- */
 function updatePlayerUI(video) {
   const globalIdx = getVideoGlobalIndex(video.id);
   const total = FLAT_VIDEOS.length;
@@ -1280,9 +1239,6 @@ function updatePlayerUI(video) {
   updateWatchedButtonState(isWatched);
 }
 
-/**
- * Update the Watched / Not Watched button's visual state
- */
 function updateWatchedButtonState(isWatched) {
   if (!elBtnToggleWatched || !elTextWatchedStatus) return;
 
@@ -1306,17 +1262,11 @@ function updateWatchedButtonState(isWatched) {
   }
 }
 
-/**
- * Toggle watched state for the current video
- */
 function toggleCurrentWatched() {
   if (!STATE.activeVideoId) return;
   toggleVideoWatched(STATE.activeVideoId);
 }
 
-/**
- * Toggle watched state for any given video
- */
 function toggleVideoWatched(id) {
   const isCurrentlyWatched = STATE.watchedIds.has(id);
 
@@ -1357,9 +1307,6 @@ function toggleVideoWatched(id) {
   }
 }
 
-/**
- * Update the "now playing" row without a full re-render
- */
 function updateActiveRowInDOM(activeId, chapterId) {
   document.querySelectorAll('.video-row.current-playing').forEach(el => {
     el.classList.remove('current-playing');
@@ -1390,9 +1337,6 @@ function updateActiveRowInDOM(activeId, chapterId) {
   }
 }
 
-/**
- * Switch to the previous lecture
- */
 function playPrevVideo() {
   const currentIdx = getVideoGlobalIndex(STATE.activeVideoId);
   if (currentIdx > 0) {
@@ -1400,9 +1344,6 @@ function playPrevVideo() {
   }
 }
 
-/**
- * Switch to the next lecture
- */
 function playNextVideo() {
   const currentIdx = getVideoGlobalIndex(STATE.activeVideoId);
   if (currentIdx < FLAT_VIDEOS.length - 1) {
@@ -1412,9 +1353,6 @@ function playNextVideo() {
   }
 }
 
-/**
- * Render the full syllabus list (9 chapters, YouTube-style accordion)
- */
 function renderSyllabus() {
   if (!elChaptersAccordion) return;
 
@@ -1552,9 +1490,6 @@ function renderSyllabus() {
   }
 }
 
-/**
- * Set up all interaction event listeners
- */
 function setupEventListeners() {
   if (elBtnPrev) elBtnPrev.addEventListener('click', playPrevVideo);
   if (elBtnNext) elBtnNext.addEventListener('click', playNextVideo);
@@ -1574,7 +1509,6 @@ function setupEventListeners() {
       const video = findVideoById(STATE.activeVideoId);
       if (!video) return;
 
-      // Include current playback position (?t=) if available
       let startAt = 0;
       if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function') {
         try {
@@ -1661,7 +1595,6 @@ function setupEventListeners() {
   setInterval(saveCurrentPlaybackTime, 2000);
   window.addEventListener('beforeunload', saveCurrentPlaybackTime);
 
-  // Return focus to window when the mouse leaves the video frame
   const playerWrapper = document.querySelector('.yt-player-wrapper');
   if (playerWrapper) {
     playerWrapper.addEventListener('mouseleave', () => {
@@ -1678,9 +1611,7 @@ function setupEventListeners() {
     }
   });
 
-  // Handle all keyboard shortcuts (Space, N, P, Left/Right arrows, F)
   window.addEventListener('keydown', (e) => {
-    // Don't trigger shortcuts while typing in the search input
     if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable)) {
       return;
     }
@@ -1707,9 +1638,6 @@ function setupEventListeners() {
   });
 }
 
-/**
- * Send a postMessage command directly to the YouTube iframe
- */
 function postMessageToPlayer(func, args = []) {
   const iframe = document.getElementById('yt-player');
   if (iframe && iframe.contentWindow) {
@@ -1721,14 +1649,11 @@ function postMessageToPlayer(func, args = []) {
   }
 }
 
-/**
- * Play / Pause video (Space key)
- */
 function togglePlayPause() {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getPlayerState === 'function') {
     try {
       const state = STATE.ytPlayer.getPlayerState();
-      if (state === 1) { // 1 = PLAYING
+      if (state === 1) {
         STATE.ytPlayer.pauseVideo();
         STATE.isPlaying = false;
         showToast('Tạm dừng');
@@ -1744,7 +1669,6 @@ function togglePlayPause() {
     }
   }
 
-  // Fallback via postMessage
   if (STATE.isPlaying) {
     postMessageToPlayer('pauseVideo');
     STATE.isPlaying = false;
@@ -1756,9 +1680,6 @@ function togglePlayPause() {
   }
 }
 
-/**
- * Seek by N seconds (Left arrow -5s, Right arrow +5s)
- */
 function seekRelative(seconds) {
   if (STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function') {
     try {
@@ -1773,16 +1694,12 @@ function seekRelative(seconds) {
     }
   }
 
-  // Fallback with an estimated time
   const targetTime = Math.max(0, (STATE.lastKnownTime || 0) + seconds);
   STATE.lastKnownTime = targetTime;
   postMessageToPlayer('seekTo', [targetTime, true]);
   showToast(seconds > 0 ? `Tua tới +${seconds}s` : `Tua lùi ${seconds}s`);
 }
 
-/**
- * Toggle fullscreen mode (F key)
- */
 function toggleFullScreen() {
   const iframe = document.getElementById('yt-player');
   if (!iframe) return;
@@ -1795,9 +1712,6 @@ function toggleFullScreen() {
   }
 }
 
-/**
- * Load the YouTube IFrame Player API
- */
 function initYouTubeApi() {
   const tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
@@ -1814,21 +1728,14 @@ function initYouTubeApi() {
   };
 }
 
-/**
- * Handle player state changes
- */
 function onPlayerStateChange(event) {
   if (event.data === 1) {
-    // Playing
     STATE.isPlaying = true;
   } else if (event.data === 2) {
-    // Paused
     STATE.isPlaying = false;
   } else if (event.data === 0) {
-    // Ended
     STATE.isPlaying = false;
     if (STATE.activeVideoId) {
-      // Clear the resume point now that the video has ended
       localStorage.removeItem(`it007_time_${STATE.activeVideoId}`);
 
       if (!STATE.watchedIds.has(STATE.activeVideoId)) {
@@ -1849,9 +1756,6 @@ function onPlayerStateChange(event) {
   }
 }
 
-/**
- * Boot the app once the page has loaded
- */
 function init() {
   initYouTubeApi();
   setupEventListeners();
