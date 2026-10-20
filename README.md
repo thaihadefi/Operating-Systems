@@ -8,7 +8,7 @@ Organizes 96 course lectures across 9 chapters with progress tracking, timestamp
 
 - **YouTube Player Integration**: Playback synchronization, resume from saved timestamp, and optional auto-play next lecture.
 - **Syllabus & Search**: 9 chapters with lecture list, real-time search across titles/topics, and watched/unwatched filters.
-- **Progress Tracking**: Local storage persistence for watched status and resume points without requiring an account.
+- **Progress Tracking**: Automatic completion detection (upon lecture completion or at 90% playback), instant visual checkmarks without page reload, and localStorage persistence without requiring an account.
 - **Keyboard Shortcuts**: `Space` (Play/Pause), `N` (Next), `P` (Previous), `←`/`→` (Seek 5s), `F` (Fullscreen).
 
 ## Project Structure

@@ -818,6 +818,24 @@ kbd {
   color: var(--emerald);
 }
 
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.video-row.is-watched .check-watched-btn svg {
+  animation: checkmarkPop 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 .video-thumb-container {
   width: 140px;
   height: 78px;

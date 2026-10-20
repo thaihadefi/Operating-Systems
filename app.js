@@ -1165,6 +1165,13 @@ function saveCurrentPlaybackTime() {
       if (time > 2) {
         localStorage.setItem(`it007_time_${STATE.activeVideoId}`, time.toString());
       }
+
+      const currentVideo = findVideoById(STATE.activeVideoId);
+      if (currentVideo && currentVideo.duration && time >= Math.floor(currentVideo.duration * 0.9)) {
+        if (!STATE.watchedIds.has(STATE.activeVideoId)) {
+          setVideoWatched(STATE.activeVideoId, true, false);
+        }
+      }
     } catch (e) {
     }
   }
@@ -1267,31 +1274,16 @@ function toggleCurrentWatched() {
   toggleVideoWatched(STATE.activeVideoId);
 }
 
-function toggleVideoWatched(id) {
-  const isCurrentlyWatched = STATE.watchedIds.has(id);
-
-  if (isCurrentlyWatched) {
-    STATE.watchedIds.delete(id);
-    showToast('Marked as unwatched');
-  } else {
-    STATE.watchedIds.add(id);
-    showToast('Marked as watched');
-  }
-
-  localStorage.setItem('it007_watched_ids', JSON.stringify(Array.from(STATE.watchedIds)));
-  
-  if (id === STATE.activeVideoId) {
-    updateWatchedButtonState(!isCurrentlyWatched);
-  }
-
+function updateVideoRowWatchedDOM(id, isWatched) {
   const rowEl = document.querySelector(`.video-row[data-video-id="${id}"]`);
   if (rowEl) {
-    rowEl.classList.toggle('is-watched', !isCurrentlyWatched);
+    rowEl.classList.toggle('is-watched', isWatched);
     const checkBtn = rowEl.querySelector('.check-watched-btn');
     if (checkBtn) {
+      checkBtn.title = isWatched ? 'Watched (click to change)' : 'Not watched (click to mark as watched)';
       checkBtn.innerHTML = `
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          ${!isCurrentlyWatched 
+          ${isWatched 
             ? '<circle cx="12" cy="12" r="10" fill="rgba(16,185,129,0.15)"></circle><polyline points="16 9 10 15 7 12"></polyline>' 
             : '<circle cx="12" cy="12" r="10"></circle>'
           }
@@ -1299,12 +1291,37 @@ function toggleVideoWatched(id) {
       `;
     }
   }
+}
 
+function setVideoWatched(id, isWatched = true, showToastMsg = false) {
+  const currentlyWatched = STATE.watchedIds.has(id);
+  if (currentlyWatched === isWatched) return;
+
+  if (isWatched) {
+    STATE.watchedIds.add(id);
+    if (showToastMsg) showToast('Marked as watched');
+  } else {
+    STATE.watchedIds.delete(id);
+    if (showToastMsg) showToast('Marked as unwatched');
+  }
+
+  localStorage.setItem('it007_watched_ids', JSON.stringify(Array.from(STATE.watchedIds)));
+  
+  if (id === STATE.activeVideoId) {
+    updateWatchedButtonState(isWatched);
+  }
+
+  updateVideoRowWatchedDOM(id, isWatched);
   updateOverallProgress();
 
   if (STATE.filterMode !== 'all') {
     renderSyllabus();
   }
+}
+
+function toggleVideoWatched(id) {
+  const isCurrentlyWatched = STATE.watchedIds.has(id);
+  setVideoWatched(id, !isCurrentlyWatched, true);
 }
 
 function updateActiveRowInDOM(activeId, chapterId) {
@@ -1345,6 +1362,16 @@ function playPrevVideo() {
 }
 
 function playNextVideo() {
+  if (STATE.activeVideoId && STATE.ytPlayer && typeof STATE.ytPlayer.getCurrentTime === 'function') {
+    try {
+      const time = Math.floor(STATE.ytPlayer.getCurrentTime());
+      const currentVideo = findVideoById(STATE.activeVideoId);
+      if (currentVideo && currentVideo.duration && (time >= Math.floor(currentVideo.duration * 0.8) || time >= currentVideo.duration - 15)) {
+        setVideoWatched(STATE.activeVideoId, true, false);
+      }
+    } catch (e) {}
+  }
+
   const currentIdx = getVideoGlobalIndex(STATE.activeVideoId);
   if (currentIdx < FLAT_VIDEOS.length - 1) {
     selectVideo(FLAT_VIDEOS[currentIdx + 1].id, true);
@@ -1737,15 +1764,7 @@ function onPlayerStateChange(event) {
     STATE.isPlaying = false;
     if (STATE.activeVideoId) {
       localStorage.removeItem(`it007_time_${STATE.activeVideoId}`);
-
-      if (!STATE.watchedIds.has(STATE.activeVideoId)) {
-        STATE.watchedIds.add(STATE.activeVideoId);
-        localStorage.setItem('it007_watched_ids', JSON.stringify(Array.from(STATE.watchedIds)));
-        updateOverallProgress();
-        updateWatchedButtonState(true);
-        const rowEl = document.querySelector(`.video-row[data-video-id="${STATE.activeVideoId}"]`);
-        if (rowEl) rowEl.classList.add('is-watched');
-      }
+      setVideoWatched(STATE.activeVideoId, true, true);
     }
 
     if (STATE.autoNext) {
