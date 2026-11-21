@@ -1116,6 +1116,7 @@ function updateOverallProgress() {
     const chWatched = ch.videos.filter(v => STATE.watchedIds.has(v.id)).length;
     const chTotal = ch.videos.length;
     const chPercent = chTotal > 0 ? Math.round((chWatched / chTotal) * 100) : 0;
+    const chDuration = ch.videos.reduce((sum, v) => sum + (v.duration || 0), 0);
 
     const countBadge = document.getElementById(`ch-badge-${ch.id}`);
     if (countBadge) {
@@ -1125,6 +1126,11 @@ function updateOverallProgress() {
     const miniBar = document.getElementById(`ch-bar-${ch.id}`);
     if (miniBar) {
       miniBar.style.width = `${chPercent}%`;
+    }
+
+    const descText = document.getElementById(`ch-desc-${ch.id}`);
+    if (descText) {
+      descText.innerHTML = `${chWatched}/${chTotal} completed &bull; ${formatChapterDuration(chDuration)}`;
     }
   });
 }
@@ -1428,7 +1434,7 @@ function renderSyllabus() {
             <div class="chapter-mini-bar">
               <div id="ch-bar-${chapter.id}" class="chapter-mini-bar-fill" style="width: ${chPercent}%;"></div>
             </div>
-            <span class="chapter-desc-text">${chWatched}/${chTotal} completed &bull; ${formatChapterDuration(chDuration)}</span>
+            <span id="ch-desc-${chapter.id}" class="chapter-desc-text">${chWatched}/${chTotal} completed &bull; ${formatChapterDuration(chDuration)}</span>
           </div>
         </div>
         <div class="chapter-header-right">
@@ -1527,7 +1533,7 @@ function setupEventListeners() {
     elChkAutoNext.addEventListener('change', (e) => {
       STATE.autoNext = e.target.checked;
       localStorage.setItem('it007_auto_next', STATE.autoNext ? 'true' : 'false');
-      showToast(STATE.autoNext ? 'Đã bật tự động chuyển bài' : 'Đã tắt tự động chuyển bài');
+      showToast(STATE.autoNext ? 'Auto-next enabled' : 'Auto-next disabled');
     });
   }
 
@@ -1552,23 +1558,23 @@ function setupEventListeners() {
         ? `https://www.youtube.com/watch?v=${video.id}&t=${startAt}s`
         : `https://www.youtube.com/watch?v=${video.id}`;
       navigator.clipboard.writeText(url).then(() => {
-        showToast('Đã sao chép liên kết video vào bộ nhớ tạm');
+        showToast('Video link copied to clipboard');
       }).catch(() => {
-        showToast('Không thể sao chép liên kết');
+        showToast('Failed to copy link');
       });
     });
   }
 
   if (elBtnResetProgress) {
     elBtnResetProgress.addEventListener('click', () => {
-      if (confirm('Bạn có chắc chắn muốn đặt lại toàn bộ tiến độ học tập (xóa tất cả đánh dấu đã hoàn thành)?')) {
+      if (confirm('Are you sure you want to reset all course progress? This will clear all completed lectures.')) {
         STATE.watchedIds.clear();
         localStorage.removeItem('it007_watched_ids');
         FLAT_VIDEOS.forEach(v => localStorage.removeItem(`it007_time_${v.id}`));
         updateOverallProgress();
         updateWatchedButtonState(false);
         renderSyllabus();
-        showToast('Đã đặt lại tiến độ học tập');
+        showToast('Course progress reset');
       }
     });
   }
@@ -1683,12 +1689,12 @@ function togglePlayPause() {
       if (state === 1) {
         STATE.ytPlayer.pauseVideo();
         STATE.isPlaying = false;
-        showToast('Tạm dừng');
+        showToast('Paused');
         return;
       } else {
         STATE.ytPlayer.playVideo();
         STATE.isPlaying = true;
-        showToast('Phát tiếp');
+        showToast('Playing');
         return;
       }
     } catch (err) {
@@ -1699,11 +1705,11 @@ function togglePlayPause() {
   if (STATE.isPlaying) {
     postMessageToPlayer('pauseVideo');
     STATE.isPlaying = false;
-    showToast('Tạm dừng');
+    showToast('Paused');
   } else {
     postMessageToPlayer('playVideo');
     STATE.isPlaying = true;
-    showToast('Phát tiếp');
+    showToast('Playing');
   }
 }
 
@@ -1714,7 +1720,7 @@ function seekRelative(seconds) {
       const targetTime = Math.max(0, currentTime + seconds);
       STATE.ytPlayer.seekTo(targetTime, true);
       STATE.lastKnownTime = targetTime;
-      showToast(seconds > 0 ? `Tua tới +${seconds}s` : `Tua lùi ${seconds}s`);
+      showToast(seconds > 0 ? `Forward +${seconds}s` : `Rewind ${Math.abs(seconds)}s`);
       return;
     } catch (err) {
       console.warn('ytPlayer seek failed:', err);
@@ -1724,7 +1730,7 @@ function seekRelative(seconds) {
   const targetTime = Math.max(0, (STATE.lastKnownTime || 0) + seconds);
   STATE.lastKnownTime = targetTime;
   postMessageToPlayer('seekTo', [targetTime, true]);
-  showToast(seconds > 0 ? `Tua tới +${seconds}s` : `Tua lùi ${seconds}s`);
+  showToast(seconds > 0 ? `Forward +${seconds}s` : `Rewind ${Math.abs(seconds)}s`);
 }
 
 function toggleFullScreen() {
